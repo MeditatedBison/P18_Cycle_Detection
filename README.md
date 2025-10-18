@@ -58,9 +58,12 @@ The program will tell you if it found a cycle. If it does, it will look somethin
 
 <img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/2a03a0f8-39a3-4489-b43c-a5befba1359e" />
 
+<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/7054e90f-27e2-4b69-ae2d-891289f82c0b" />
+
 <img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/2a903f8e-7cd3-4fe8-bf06-1596bc88bf02" />
 
-
+<img width="2400" height="1400" alt="image" src="https://github.com/user-attachments/assets/0eae7b06-6459-4252-bb7e-4b0b91390c91" />
 
 <img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/6454daf4-da68-4e4f-9e7f-6a0b3d63caa7" />
 
+<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/17f3a5e3-1fb5-4479-a4c1-2c2d1b108272" />

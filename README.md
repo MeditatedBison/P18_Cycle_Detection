@@ -48,4 +48,19 @@ The program will tell you if it found a cycle. If it does, it will look somethin
 
 ## Presentation 
 
-<iframe src="https://gamma.app/embed/x1b2jmh49aypylf" style="width: 700px; max-width: 100%; height: 450px" allow="fullscreen" title="Cycle Detection in Directed Graphs"></iframe>
+<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/8ec7f3a1-298f-4e71-b1b3-37b03e0ded48" />
+
+<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/0494b6a6-f4da-4c64-95b2-8141276b803c" />
+
+<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/a3d2b5c5-01d5-4516-96af-055eebd1f25f" />
+
+<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/f5a8f728-42d7-43f9-a93e-a027314bf0fb" />
+
+<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/2a03a0f8-39a3-4489-b43c-a5befba1359e" />
+
+<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/2a903f8e-7cd3-4fe8-bf06-1596bc88bf02" />
+
+
+
+<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/6454daf4-da68-4e4f-9e7f-6a0b3d63caa7" />
+

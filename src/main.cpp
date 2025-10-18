@@ -13,6 +13,7 @@
 #include <sstream>
 #include <string>
 #include <algorithm> // for std::max
+#include <chrono>    // for timing the algorithm
 
 class Graph {
 private:
@@ -155,11 +156,17 @@ int main() {
     std::cout << "---------------------------------------" << std::endl;
     std::cout << "Ok, running DFS to find a cycle..." << std::endl;
 
+    auto start = std::chrono::high_resolution_clock::now();
+
     if (g.hasCycle()) {
         std::cout << "\nResult: Cycle Detected." << std::endl;
     } else {
         std::cout << "\nResult: No Cycle Found." << std::endl;
     }
+
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "Algorithm finished in " << elapsed.count() << " seconds." << std::endl;
 
     return 0;
 }

@@ -44,7 +44,8 @@ You will need `g++` and `make` installed.
 
 The program will tell you if it found a cycle. If it does, it will look something like this:
 
-<img width="1052" height="494" alt="image" src="https://github.com/user-attachments/assets/3a38637a-4b04-40f0-bc12-3f55bf27a5d9" />
+<img width="1076" height="518" alt="image" src="https://github.com/user-attachments/assets/c16c036e-d6b5-4089-8731-ac70252991a4" />
+
 
 ## Presentation 
 

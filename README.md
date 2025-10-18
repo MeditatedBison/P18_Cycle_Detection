@@ -48,22 +48,6 @@ The program will tell you if it found a cycle. If it does, it will look somethin
 
 ## Presentation 
 
-<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/8ec7f3a1-298f-4e71-b1b3-37b03e0ded48" />
-
-<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/0494b6a6-f4da-4c64-95b2-8141276b803c" />
-
-<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/a3d2b5c5-01d5-4516-96af-055eebd1f25f" />
-
-<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/f5a8f728-42d7-43f9-a93e-a027314bf0fb" />
-
-<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/2a03a0f8-39a3-4489-b43c-a5befba1359e" />
-
-<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/7054e90f-27e2-4b69-ae2d-891289f82c0b" />
-
-<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/2a903f8e-7cd3-4fe8-bf06-1596bc88bf02" />
-
-<img width="2400" height="1400" alt="image" src="https://github.com/user-attachments/assets/0eae7b06-6459-4252-bb7e-4b0b91390c91" />
-
-<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/6454daf4-da68-4e4f-9e7f-6a0b3d63caa7" />
-
-<img width="2400" height="1350" alt="image" src="https://github.com/user-attachments/assets/17f3a5e3-1fb5-4479-a4c1-2c2d1b108272" />
+I've attached the Project report in the files, it's Project Report.pdf. 
+But here's a summarized Presentation (which was optional) :
+https://gamma.app/docs/Cycle-Detection-in-Directed-Graphs-x1b2jmh49aypylf

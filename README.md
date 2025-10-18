@@ -1,6 +1,6 @@
 # Project 18: Cycle Detection in a Graph
 
-**Author:** [Your Name Here]
+**Author:** Sarvesh Soni
 
 This project is a C++ program built to detect cycles in a directed graph. It uses a Depth-First Search (DFS) algorithm to traverse the graph and identify any back edges that form a cycle.
 

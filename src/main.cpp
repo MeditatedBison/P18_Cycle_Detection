@@ -1,12 +1,10 @@
 /*
- * Author: Sarvesh Soni
- * Project: P18 - Cycle Detection in a Graph
- * Date: October 2025
+ * Sarvesh Soni
+ * Project 18: Cycle Detection in a Graph
+ * B.Math, 3rd Year
  *
- * Description:
- * This program checks for cycles in a directed graph. It reads a graph
- * from a CSV file and uses a Depth-First Search (DFS) algorithm to find out
- * if there are any circular dependencies.
+ * My program to check for cycles in a directed graph. I'm using DFS.
+ * It reads the Bitcoin-Alpha dataset and checks for any circular trust paths.
  */
 
 #include <iostream>
@@ -14,64 +12,73 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <algorithm> // for std::max
 
-// A pretty standard Graph class to represent the graph
 class Graph {
 private:
-    int numVertices;
-    // Using a vector of vectors for the adjacency list.
-    // adj[i] will contain a list of all vertices reachable from vertex i.
-    std::vector<std::vector<int>> adj;
+    int V; // Number of vertices
+    std::vector<std::vector<int>> adjList;
 
-    // This is the recursive helper function for DFS. It does the real work.
-    bool hasCycleUtil(int v, std::vector<bool>& visited, std::vector<bool>& recursionStack) {
-        // Mark the current node as visited and add it to our current path (recursion stack)
-        visited[v] = true;
-        recursionStack[v] = true;
+    // The main DFS logic is in this helper function
+    bool isCyclicUtil(int u, std::vector<bool>& visited, std::vector<bool>& recStack, std::vector<int>& path) {
+        visited[u] = true;
+        recStack[u] = true;
+        path.push_back(u);
 
-        // Check all the neighbors of the current vertex
-        for (int neighbor : adj[v]) {
-            // If the neighbor hasn't been visited, then recurse on it
-            if (!visited[neighbor]) {
-                if (hasCycleUtil(neighbor, visited, recursionStack)) {
-                    return true; // Cycle found downstream
+        // Go through all neighbours of this vertex
+        for (int v : adjList[u]) {
+            // If we haven't visited the neighbour, recurse on it
+            if (!visited[v]) {
+                if (isCyclicUtil(v, visited, recStack, path)) {
+                    return true; // Cycle was found deeper in the recursion
                 }
             }
-            // If the neighbor is already in our current path, we've found a cycle!
-            else if (recursionStack[neighbor]) {
+            // If the neighbour is already in our current path (recStack), it's a back edge.
+            // Cycle found!
+            else if (recStack[v]) {
+                std::cout << "\n--- Cycle Found! ---" << std::endl;
+                std::cout << "Cycle Path: ";
+                auto it = std::find(path.begin(), path.end(), v);
+                while (it != path.end()) {
+                    std::cout << *it << " -> ";
+                    it++;
+                }
+                std::cout << v << std::endl;
+                std::cout << "--------------------" << std::endl;
                 return true;
             }
         }
 
-        // If we've explored all neighbors and returned, this node is no longer in our current path.
-        recursionStack[v] = false;
+        // Backtrack: remove from current path
+        recStack[u] = false;
+        path.pop_back();
         return false;
     }
 
 public:
     // Constructor
-    Graph(int V) {
-        this->numVertices = V;
-        adj.resize(V);
+    Graph(int num_vertices) {
+        this->V = num_vertices;
+        adjList.resize(V);
     }
 
-    // Function to add an edge to the graph
+    // Function to add an edge
     void addEdge(int u, int v) {
-        // Make sure we don't go out of bounds
-        if (u < numVertices && v < numVertices) {
-            adj[u].push_back(v);
+        if (u < V && v < V) {
+            adjList[u].push_back(v);
         }
     }
 
-    // The main function to check for a cycle
+    // Main function to check for cycle
     bool hasCycle() {
-        std::vector<bool> visited(numVertices, false);
-        std::vector<bool> recursionStack(numVertices, false);
+        std::vector<bool> visited(V, false);
+        std::vector<bool> recStack(V, false);
+        std::vector<int> path;
 
-        // We have to check every node in case the graph is not connected
-        for (int i = 0; i < numVertices; i++) {
+        // We have to check from every node in case graph is disconnected
+        for (int i = 0; i < V; i++) {
             if (!visited[i]) {
-                if (hasCycleUtil(i, visited, recursionStack)) {
+                if (isCyclicUtil(i, visited, recStack, path)) {
                     return true;
                 }
             }
@@ -82,59 +89,76 @@ public:
 
 // --- Main Program ---
 int main() {
-    std::cout << "Starting the Cycle Detection Program..." << std::endl;
+    std::cout << "P18 Cycle Detection Program..." << std::endl;
 
-    // The dataset nodes go up pretty high, so let's set a safe max size.
-    const int MAX_VERTICES = 8000;
-    Graph dependencyGraph(MAX_VERTICES);
+    std::string filename = "data/dataset.csv";
+    std::ifstream file(filename);
 
-    std::string filename = "../data/dataset.csv";
-    std::ifstream dataFile(filename);
-
-    // Always good to check if the file actually opened
-    if (!dataFile.is_open()) {
-        std::cerr << "FATAL ERROR: Could not open file: " << filename << std::endl;
-        std::cerr << "Make sure 'dataset.csv' is in the 'data' folder." << std::endl;
-        return 1; // Exit with an error code
+    if (!file.is_open()) {
+        std::cerr << "Error! File not found. Check the path: " << filename << std::endl;
+        return 1;
     }
-
-    std::cout << "Successfully opened " << filename << ". Reading data..." << std::endl;
-
-    std::string line;
-    int edgesLoaded = 0;
     
-    // The first line is the header (SOURCE, TARGET, RATING, TIME), so we just read and discard it.
-    std::getline(dataFile, line);
+    // First I hardcoded the size, but that's bad. Better to find max node id first.
+    std::cout << "File opened. First pass to find graph size..." << std::endl;
+    
+    int max_node = 0;
+    std::string line;
+    std::getline(file, line); // Skip header
 
-    // Now, let's loop through the rest of the file
-    while (std::getline(dataFile, line)) {
-        std::stringstream lineStream(line);
-        std::string sourceStr, targetStr;
-
-        // The data is comma-separated. We only need the first two columns.
-        std::getline(lineStream, sourceStr, ',');
-        std::getline(lineStream, targetStr, ',');
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::string s_src, s_dest;
         
-        // The values from the file are strings, so we need to convert them to integers.
-        // A try-catch block is good practice in case some line is formatted weirdly.
+        std::getline(ss, s_src, ',');
+        std::getline(ss, s_dest, ',');
+        
         try {
-            int sourceNode = std::stoi(sourceStr);
-            int targetNode = std::stoi(targetStr);
-            dependencyGraph.addEdge(sourceNode, targetNode);
-            edgesLoaded++;
+            max_node = std::max({max_node, std::stoi(s_src), std::stoi(s_dest)});
         } catch (...) {
-            // Just ignore lines that can't be parsed
+            // some lines might be bad, just skip them
         }
     }
 
-    std::cout << "Finished reading data. Loaded " << edgesLoaded << " edges into the graph." << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
-    std::cout << "Running Depth-First Search to detect cycles..." << std::endl;
+    int num_vertices = max_node + 1;
+    std::cout << "Max node ID is " << max_node << ". Total vertices needed: " << num_vertices << std::endl;
 
-    if (dependencyGraph.hasCycle()) {
-        std::cout << "RESULT: A cycle was detected in the graph." << std::endl;
+    // Reset file to read again for adding edges
+    file.clear();
+    file.seekg(0, std::ios::beg);
+    
+    Graph g(num_vertices);
+    
+    std::cout << "Second pass: loading graph edges..." << std::endl;
+    int edge_count = 0;
+    std::getline(file, line); // Skip header again
+
+    while (std::getline(file, line)) {
+        std::stringstream ss(line);
+        std::string s_src, s_dest;
+
+        std::getline(ss, s_src, ',');
+        std::getline(ss, s_dest, ',');
+        
+        try {
+            int u = std::stoi(s_src);
+            int v = std::stoi(s_dest);
+            g.addEdge(u, v);
+            edge_count++;
+        } catch (...) {
+            // malformed line, skip
+        }
+    }
+    file.close();
+
+    std::cout << "Done. Loaded " << edge_count << " edges." << std::endl;
+    std::cout << "---------------------------------------" << std::endl;
+    std::cout << "Ok, running DFS to find a cycle..." << std::endl;
+
+    if (g.hasCycle()) {
+        std::cout << "\nResult: Cycle Detected." << std::endl;
     } else {
-        std::cout << "RESULT: No cycles were found in the graph." << std::endl;
+        std::cout << "\nResult: No Cycle Found." << std::endl;
     }
 
     return 0;

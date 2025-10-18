@@ -45,3 +45,6 @@ You will need a C++ compiler like `g++` and `make` installed on your system.
 The program will first parse the dataset to build the graph and then run the DFS algorithm. The final output will state whether a cycle was detected and, if so, will print the path of the first cycle found.
 
 Example output if a cycle is found:
+
+<img width="1052" height="450" alt="image" src="https://github.com/user-attachments/assets/85177b1d-c72e-4f4d-ae8c-cb1500100ec6" />
+

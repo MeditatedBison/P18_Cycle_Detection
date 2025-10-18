@@ -1,50 +1,47 @@
-# Problem 18: Cycle Detection in a Graph
+# Project 18: Cycle Detection in a Graph
 
 **Author:** Sarvesh Soni
-**Date:** October 17, 2025
+**ISI Bangalore, B.Math 3rd Year**
 
 ## About The Project
 
-This project is a C++ implementation of a cycle detection algorithm for directed graphs. It uses a Depth-First Search (DFS) based approach to traverse the graph and identify "back edges," which are indicative of a cycle.
+For this project, my goal was to write a C++ program to find cycles in a directed graph. I used a Depth-First Search (DFS) algorithm because it's a very natural way to explore a graph and find "back edges" that create a cycle.
 
-The primary goal is to determine if a given graph, representing a network of dependencies or trust relationships, contains any circular patterns (e.g., A -> B -> C -> A). Such cycles can represent deadlocks or logical inconsistencies in real-world systems.
+This is an important problem because cycles in a dependency graph can mean a "deadlock". For example, if Package A needs B, and B needs A, you can't install either. My program is built to find these kinds of situations.
 
-The program was tested using the **Bitcoin-Alpha trust network dataset** from the Stanford Network Analysis Project (SNAP).
+I tested it with the **Bitcoin-Alpha trust network dataset** from the SNAP website.
 
-### Key Features
-*   **Dynamic Graph Sizing:** Automatically determines the required graph size by parsing the dataset.
-*   **Cycle Identification:** Not only detects if a cycle exists, but also prints the nodes forming the first cycle found.
-*   **Efficient Algorithm:** Implements an O(V + E) time complexity DFS algorithm.
+### Main Features
+*   It figures out the graph size on its own by reading the file first.
+*   It not only detects a cycle but also prints the path of the first one it finds.
+*   The DFS algorithm is efficient, with a time complexity of O(V+E).
 
 ## File Structure
 
 -   `/src`: Contains the main C++ source code (`main.cpp`).
--   `/data`: Contains the dataset used for the experiment (`dataset.csv`).
--   `Makefile`: For easy compilation.
--   `Project_Report.pdf`: The final summary and analysis of the project.
+-   `/data`: Contains the `dataset.csv` file.
+-   `Makefile`: For easy, one-command compilation.
+-   `Project_Report.pdf`: The final report with all my analysis.
 
 ## How to Compile and Run
 
-You will need a C++ compiler like `g++` and `make` installed on your system.
+You will need `g++` and `make` installed.
 
-1.  **Open your terminal** in the root folder of this project (`P18_Cycle_Detection`).
+1.  **Open your terminal** in the project's root folder.
 
-2.  **Compile the program** using the provided Makefile with the following command:
-    ```sh
+2.  **To compile**, just run `make`:
+    ```
     make
     ```
-    This will create an executable file named `cycle_detector` in the root directory.
+    This will create an executable named `cycle_detector`.
 
-3.  **Run the program:**
-    ```sh
+3.  **To run the program:**
+    ```
     ./cycle_detector
     ```
 
 ### Expected Output
 
-The program will first parse the dataset to build the graph and then run the DFS algorithm. The final output will state whether a cycle was detected and, if so, will print the path of the first cycle found.
+The program will tell you if it found a cycle. If it does, it will look something like this:
 
-Example output if a cycle is found:
-
-<img width="1052" height="450" alt="image" src="https://github.com/user-attachments/assets/85177b1d-c72e-4f4d-ae8c-cb1500100ec6" />
-
+<img width="1052" height="494" alt="image" src="https://github.com/user-attachments/assets/3a38637a-4b04-40f0-bc12-3f55bf27a5d9" />

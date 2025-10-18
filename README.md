@@ -1,4 +1,4 @@
-# Project 18: Cycle Detection in a Graph
+# P18: Cycle Detection in a Graph : Team VISA
 
 **Author:** Sarvesh Soni
 **ISI Bangalore, B.Math 3rd Year**
@@ -45,3 +45,7 @@ You will need `g++` and `make` installed.
 The program will tell you if it found a cycle. If it does, it will look something like this:
 
 <img width="1052" height="494" alt="image" src="https://github.com/user-attachments/assets/3a38637a-4b04-40f0-bc12-3f55bf27a5d9" />
+
+## Presentation 
+
+<iframe src="https://gamma.app/embed/x1b2jmh49aypylf" style="width: 700px; max-width: 100%; height: 450px" allow="fullscreen" title="Cycle Detection in Directed Graphs"></iframe>

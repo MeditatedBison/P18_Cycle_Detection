@@ -1,6 +1,6 @@
 # P18: Cycle Detection in a Graph : Team VISA
 
-**Author:** Sarvesh Soni
+**Author:** Sarvesh Soni, Vijit Tripathi
 **ISI Bangalore, B.Math 3rd Year**
 
 ## About The Project

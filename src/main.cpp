@@ -1,9 +1,9 @@
 /*
- * Sarvesh Soni
+ * Authors: Sarvesh Soni & Vijit Tripathi
  * Project 18: Cycle Detection in a Graph
  * B.Math, 3rd Year
  *
- * My program to check for cycles in a directed graph. I'm using DFS.
+ * Our program to check for cycles in a directed graph. We used DFS.
  * It reads the Bitcoin-Alpha dataset and checks for any circular trust paths.
  */
 
@@ -100,7 +100,8 @@ int main() {
         return 1;
     }
     
-    // First I hardcoded the size, but that's bad. Better to find max node id first.
+    // Initially, we considered hardcoding the size, but realized that's inefficient.
+    // It's better to find the max node id first.
     std::cout << "File opened. First pass to find graph size..." << std::endl;
     
     int max_node = 0;
